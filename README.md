@@ -141,14 +141,6 @@ Web (Node mirror):
 npm start         # → http://localhost:8081   (PORT env var changes it)
 ```
 
-## ☁️ Deploy to Vercel
-
-1. Push this folder to a GitHub repository.
-2. Import that repository at [vercel.com](https://vercel.com) → **Deploy**.
-3. Vercel automatically serves `public/` as static assets and `api/` as serverless functions.
-
-> Serverless state is in-memory — data resets on cold starts. See "Known limits" below.
-
 ## ⚙️ Configuration
 
 The admin credentials/token fall back to demo values (`admin` / `admin123` / `s3cr3t-adm1n`).
