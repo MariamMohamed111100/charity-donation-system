@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DonationVerse — Where Giving Gets Fun</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <canvas id="fx-bg"></canvas>
+  <canvas id="fx-confetti"></canvas>
+
+  <div id="parallax" aria-hidden="true"></div>
+
+  <div id="toasts"></div>
+
+  <!-- ============ LANDING ============ -->
+  <section id="view-landing" class="view active">
+    <div class="landing-wrap">
+      <div class="cube-scene">
+        <div class="cube">
+          <div class="face face-front">🫶</div>
+          <div class="face face-back">🌍</div>
+          <div class="face face-left">💝</div>
+          <div class="face face-right">🎁</div>
+          <div class="face face-top">🫶</div>
+          <div class="face face-bottom">✨</div>
+        </div>
+      </div>
+
+      <div class="hero-text">
+        <div class="hero-badge">✨ 100% fun • 100% kindess</div>
+        <h1 class="hero-title">DONATION<span class="grad">VERSE</span></h1>
+        <p class="hero-sub" id="tagline">Where your dollars grow wings 🕊️</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="openAuth('donor')">I&apos;m a Donor 💝</button>
+          <button class="btn btn-ghost" onclick="openAuth('ngo')">I&apos;m an NGO 🌍</button>
+          <button class="btn btn-ghost" onclick="openAuth('admin')">Admin 🛡️</button>
+        </div>
+      </div>
+
+      <div class="landing-stats" id="landing-stats"></div>
+
+      <div class="fun-ticker" id="fun-ticker"></div>
+    </div>
+  </section>
+
+  <!-- ============ DONOR ============ -->
+  <section id="view-donor" class="view">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">🪐 DONATION<span class="grad">VERSE</span></div>
+        <div class="topbar-user" id="donor-user-chip"></div>
+        <div class="live-pill"><span class="live-dot"></span> LIVE</div>
+        <button class="btn btn-ghost sm" onclick="logout()">Logout ➜</button>
+      </header>
+
+      <div class="stat-grid donor-stats" id="donor-stat-cards"></div>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="dash">Dashboard</button>
+        <button class="tab" data-tab="donate">Make a Donation</button>
+        <button class="tab" data-tab="history">My History</button>
+      </nav>
+
+      <div class="tab-pane active" data-pane="dash" id="donor-dash"></div>
+      <div class="tab-pane" data-pane="donate" id="donor-donate"></div>
+      <div class="tab-pane" data-pane="history" id="donor-history"></div>
+
+      <div id="donate-modal" class="modal hidden">
+        <div class="modal-card">
+          <button class="modal-close" onclick="closeDonateModal()">✕</button>
+          <h3 id="donate-modal-title">Donate</h3>
+          <p id="donate-modal-mission" class="muted"></p>
+          <input id="donate-amount" type="number" min="1" step="0.01" placeholder="Amount in $" />
+          <button class="btn btn-primary block" onclick="doDonate()">Send the love 💖</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NGO ============ -->
+  <section id="view-ngo" class="view">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">🪐 DONATION<span class="grad">VERSE</span></div>
+        <div class="topbar-user" id="ngo-user-chip"></div>
+        <div class="live-pill"><span class="live-dot"></span> LIVE</div>
+        <button class="btn btn-ghost sm" onclick="logout()">Logout ➜</button>
+      </header>
+
+      <div class="stat-grid ngo-stats" id="ngo-stat-cards"></div>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="dash">Mission</button>
+        <button class="tab" data-tab="donations">Donations</button>
+        <button class="tab" data-tab="campaigns">Campaigns</button>
+      </nav>
+
+      <div class="tab-pane active" data-pane="dash" id="ngo-dash"></div>
+      <div class="tab-pane" data-pane="donations" id="ngo-donations"></div>
+      <div class="tab-pane" data-pane="campaigns" id="ngo-campaigns"></div>
+    </div>
+  </section>
+
+  <!-- ============ ADMIN ============ -->
+  <section id="view-admin" class="view">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">🪐 DONATION<span class="grad">VERSE</span> <span class="admin-tag">ADMIN CONTROL</span></div>
+        <div class="topbar-user">👑 admin</div>
+        <div class="live-pill"><span class="live-dot"></span> LIVE</div>
+        <button class="btn btn-ghost sm" onclick="logout()">Logout ➜</button>
+      </header>
+
+      <div class="stat-grid admin-stats" id="admin-stat-cards"></div>
+
+      <div class="admin-split">
+        <div class="card">
+          <h3 class="card-title">🕵️ Pending NGO verification</h3>
+          <div id="admin-pending"></div>
+        </div>
+        <div class="card">
+          <h3 class="card-title">🏆 Top NGOs</h3>
+          <div id="admin-top-ngo"></div>
+        </div>
+      </div>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="users">Users</button>
+        <button class="tab" data-tab="alldonations">All Donations</button>
+      </nav>
+
+      <div class="tab-pane active" data-pane="users" id="admin-users"></div>
+      <div class="tab-pane" data-pane="alldonations" id="admin-donations"></div>
+    </div>
+  </section>
+
+  <!-- ============ AUTH MODAL ============ -->
+  <div id="auth-modal" class="modal hidden">
+    <div class="modal-card auth-card">
+      <button class="modal-close" onclick="closeAuth()">✕</button>
+      <div class="auth-emoji" id="auth-emoji">💝</div>
+      <h3 id="auth-title">Donor Portal</h3>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth="login">Login</button>
+        <button class="auth-tab" data-auth="register">Register</button>
+      </div>
+      <form id="auth-form" onsubmit="return handleAuth(event)">
+        <label class="field">
+          <span id="field-1-label">Donor ID</span>
+          <input id="field-1" type="text" placeholder="e.g. DON004" />
+        </label>
+        <label class="field hidden" id="field-2-wrap">
+          <span id="field-2-label">Full Name</span>
+          <input id="field-2" type="text" placeholder="Your name" />
+        </label>
+        <label class="field" id="field-3-wrap" >
+          <span id="field-3-label">Donor ID</span>
+          <input id="field-3" type="text" placeholder="e.g. DON004" />
+        </label>
+        <button class="btn btn-primary block" id="auth-submit" type="submit">Let&apos;s go 🚀</button>
+      </form>
+      <p class="muted small" id="auth-hint"></p>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

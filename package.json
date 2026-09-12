@@ -1,0 +1,12 @@
+{
+  "name": "donationverse-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DonationVerse - charity donation system (Node API + static frontend, Vercel-ready)",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
