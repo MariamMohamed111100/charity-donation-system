@@ -2,7 +2,7 @@
 
 A full-stack **charity donation platform** with a playful, animated, modern 3D web UI and a tiny JSON API.
 Built as the **web deployment** of a Software Engineering course project whose core is a Java **MVC** system
-(`com.donationmvc.*`). This repo is **Vercel-ready** in one click.
+(`com.donationmvc.*`).
 
 ![roles](https://img.shields.io/badge/roles-Donor%20%E2%80%A2%20NGO%20%E2%80%A2%20Admin-ff4ecd)
 ![api](https://img.shields.io/badge/api-Node.js%20zero--deps-22d3ee)
