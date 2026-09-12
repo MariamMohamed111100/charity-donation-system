@@ -1,13 +1,8 @@
 # DonationVerse 🪐 — Software Engineering Design Demo
 
-A full-stack **charity donation platform** built as a **Software Engineering** course project.
-The focus of this repo is not "backend" — it is **how the software is designed**:
-a clean **layered MVC architecture**, well-defined **design patterns**, and a system that
-can ship **3 interchangeable frontends** (console, local web, serverless web) against
-**the same domain logic**.
-
-> The exact same use cases are delivered 3 ways: `java App` (console), `java WebApp` (local HTTP),
-> and the Node/Vercel web deploy — proving that the presentation layer is fully replaceable.
+A full-stack **charity donation platform** with a playful, animated, modern 3D web UI and a tiny JSON API.
+Built as the **web deployment** of a Software Engineering course project whose core is a Java **MVC** system
+(`com.donationmvc.*`). This repo is **Vercel-ready** in one click.
 
 ![roles](https://img.shields.io/badge/roles-Donor%20%E2%80%A2%20NGO%20%E2%80%A2%20Admin-ff4ecd)
 ![arch](https://img.shields.io/badge/arch-MVC%20%2B%20Layered%20%2B%20Observer-22d3ee)
@@ -159,10 +154,6 @@ npm start         # → http://localhost:8081   (PORT env var changes it)
 The admin credentials/token fall back to demo values (`admin` / `admin123` / `s3cr3t-adm1n`).
 Override via env vars: `ADMIN_USER`, `ADMIN_PASSWORD`, `ADMIN_TOKEN` (copy `.env.example` → `.env`).
 
-## 🔮 Known limits / future work
+## 📚 Related
 
-- In-memory storage only → add a real DB behind the Repository interface (that's exactly what
-  the pattern is for).
-- Admin password is plaintext → store a salted hash.
-- Donation status is a `String` → replace with an `enum`.
-- No automated tests yet → add unit tests per layer (Repository → Model → Controller).
+- Java MVC source + console app: the `src/` folder of the original module (Software Engineering, ECU).
